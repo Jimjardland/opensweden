@@ -1,0 +1,10 @@
+{
+  "database": {
+    "user": "user",
+    "password": "password",
+    "database": "opensweden",
+    "host": "localhost",
+    "port": 5432,
+    "timeout": 30000
+  }
+}

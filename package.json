@@ -3,18 +3,25 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "camelcase-keys": "^4.2.0",
+    "got": "^8.3.0",
+    "node-pg-migrate": "^3.0.0",
+    "pg": "^7.4.1",
     "react": "^16.3.1",
     "react-app-rewire-hot-loader": "^1.0.1",
     "react-app-rewired": "^1.5.0",
     "react-dom": "^16.3.1",
     "react-hot-loader": "^4.0.1",
-    "react-scripts": "1.1.4"
+    "react-scripts": "1.1.4",
+    "simple-pg": "^1.0.0",
+    "snakecase-keys": "^1.1.1"
   },
   "scripts": {
     "start": "react-scripts start --config-overrides ./scripts/config-overides.js",
     "build": "react-scripts build --config-overrides ./scripts/config-overides.js",
     "test": "react-scripts test --env=jsdom --config-overrides ./scripts/config-overides.js",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "migrate": "./node_modules/.bin/pg-migrate up"
   },
   "devDependencies": {
     "flow-bin": "^0.69.0"

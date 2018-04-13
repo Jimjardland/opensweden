@@ -1,0 +1,12 @@
+version: "3"
+
+services:
+  postgres:
+    image: postgres:9.6.2
+    ports:
+      - ${PORTS__POSTGRES:-5432}:5432
+    environment:
+      - POSTGRES_USER=${POSTGRES__USER:-user}
+      - POSTGRES_PASSWORD=${POSTGRES__PASS:-password}
+      - POSTGRES_DB=${POSTGRES__DB:-opensweden}
+      - POSTGRES_INITDB_ARGS=--encoding=utf8
