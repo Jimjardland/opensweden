@@ -1,22 +1,39 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import "./index.css";
-import App from "./App";
-import { AppContainer } from "react-hot-loader";
+// @flow
+import { AppContainer } from 'react-hot-loader'
+import { ApolloProvider } from 'react-apollo'
+import React from 'react'
+import ReactDOM from 'react-dom'
+import './index.css'
+import App from './App'
+import client from './ApolloClient'
 
-const render = Component => {
+const root = document.getElementById('root')
+
+if (!root) {
+  throw new Error('Missing root dom')
+}
+
+const render = (Component) => {
   ReactDOM.render(
     <AppContainer>
-      <App />
+      <ApolloProvider client={client}>
+        <Component />
+      </ApolloProvider>
     </AppContainer>,
-    document.getElementById("root")
-  );
-};
+    root
+  )
+}
 
-render(App);
+render(App)
+
+declare var module: {
+  hot: {
+    accept(path: string, callback: () => void): void
+  }
+}
 
 if (module.hot) {
-  module.hot.accept("./App", () => {
-    render(App);
-  });
+  module.hot.accept('./App', () => {
+    render(App)
+  })
 }
