@@ -2,7 +2,7 @@
 import * as React from 'react'
 import styled from 'styled-components'
 import mapboxgl from 'mapbox-gl/dist/mapbox-gl'
-import { accessToken } from '../config/mapbox'
+import { accessToken, style } from '../config/mapbox'
 
 mapboxgl.accessToken = accessToken
 
@@ -12,23 +12,46 @@ const Page = styled.div`
 
 const defaultCenter = [18.068859, 59.330297]
 
-type Props = {}
+type Props = {
+  children: React.Node
+}
 
-class App extends React.Component<Props> {
+type State = {
+  mounted: boolean
+}
+export default class Map extends React.Component<Props, State> {
+  map: mapboxgl.Map
+
+  state = {
+    mounted: false
+  }
+
+  onMapLoaded = () => {
+    this.setState({ mounted: true })
+    navigator.geolocation.getCurrentPosition((pos) => {
+      this.map.jumpTo({
+        center: [pos.coords.longitude, pos.coords.latitude]
+      })
+    })
+  }
+
   componentDidMount() {
-    const map = new mapboxgl.Map({
+    this.map = new mapboxgl.Map({
       container: 'map',
-      style: 'mapbox://styles/jontis/cjfyb4vzm6hm02rob93cz4g4o',
+      style,
       zoom: 11,
       minZoom: 10,
       maxZoom: 18,
       center: defaultCenter,
       pitch: 30
     })
+
+    this.map.on('load', this.onMapLoaded)
   }
   render() {
-    return <Page id="map" />
+    const { mounted } = this.state
+    const { children } = this.props
+
+    return <Page id="map">{mounted && children}</Page>
   }
 }
-
-export default App

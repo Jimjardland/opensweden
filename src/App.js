@@ -1,21 +1,12 @@
 // @flow
 
 import * as React from 'react'
-import styled from 'styled-components'
-import MapContainer from './containers/MapContainer'
-
-const Container = styled.div``
+import MainView from './components/MainView'
 
 type Props = {}
 
-class App extends React.Component<Props> {
+export default class App extends React.Component<Props> {
   render() {
-    return (
-      <Container>
-        <MapContainer />
-      </Container>
-    )
+    return <MainView />
   }
 }
-
-export default App
