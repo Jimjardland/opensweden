@@ -7,5 +7,9 @@ module.exports = {
   ],
   parser: 'babel-eslint',
   plugins: ['react', 'flowtype', 'prettier'],
-  rules: { 'class-methods-use-this': 0, 'no-undef': 0 }
+  rules: {
+    'class-methods-use-this': 0,
+    'no-undef': 0,
+    'import/prefer-default-export': 0
+  }
 }
