@@ -1,21 +1,12 @@
-import React, { Component } from 'react'
-import logo from './logo.svg'
-import './App.css'
+// @flow
 
-class App extends Component {
+import * as React from 'react'
+import MainView from './components/MainView'
+
+type Props = {}
+
+export default class App extends React.Component<Props> {
   render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get s11tarted, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
-    )
+    return <MainView />
   }
 }
-
-export default App
