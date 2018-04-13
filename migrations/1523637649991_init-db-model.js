@@ -6,7 +6,11 @@ exports.up = pgm => {
     address: { type: 'text', notNull: true },
     zip: { type: 'text', notNull: true },
     city: { type: 'text', notNull: true },
-    extras: { type: 'text', notNull: false }
+    extras: { type: 'text', notNull: false },
+    lat: { type: 'text', notNull: true },
+    long: { type: 'text', notNull: true },
+    expires: { type: 'timestamp', notNull: true },
+    created_at: { type: 'timestamp', notNull: true, default: pgm.func('NOW()') }
   })
 }
 

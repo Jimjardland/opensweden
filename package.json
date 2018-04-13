@@ -5,6 +5,7 @@
   "dependencies": {
     "camelcase-keys": "^4.2.0",
     "got": "^8.3.0",
+    "node-geocoder": "^3.22.0",
     "node-pg-migrate": "^3.0.0",
     "pg": "^7.4.1",
     "react": "^16.3.1",
@@ -21,7 +22,9 @@
     "build": "react-scripts build --config-overrides ./scripts/config-overides.js",
     "test": "react-scripts test --env=jsdom --config-overrides ./scripts/config-overides.js",
     "eject": "react-scripts eject",
-    "migrate": "./node_modules/.bin/pg-migrate up"
+    "migrate": "./node_modules/.bin/node-pg-migrate up",
+    "migrate:down": "./node_modules/.bin/node-pg-migrate down",
+    "migrate:create": "./node_modules/.bin/node-pg-migrate create"
   },
   "devDependencies": {
     "flow-bin": "^0.69.0"
