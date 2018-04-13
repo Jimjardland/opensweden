@@ -11,9 +11,9 @@
     "react-scripts": "1.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
+    "start": "react-scripts start --config-overrides ./scripts/config-overides.js",
+    "build": "react-scripts build --config-overrides ./scripts/config-overides.js",
+    "test": "react-scripts test --env=jsdom --config-overrides ./scripts/config-overides.js",
     "eject": "react-scripts eject"
   },
   "devDependencies": {
