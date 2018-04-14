@@ -1,5 +1,6 @@
 // @flow
 import * as React from 'react'
+import { Icon } from 'antd'
 import { findDOMNode } from 'react-dom'
 import styled from 'styled-components'
 import anime from 'animejs'
@@ -16,29 +17,88 @@ const Container = styled.div`
   background-color: ${primary};
   border-radius: 4px;
   padding: 12px;
+  cursor: ${({ open }) => (open ? 'auto' : 'pointer')};
 `
 
-const Button = styled.div`
-  padding: 6px 12px;
-  padding: 0;
+const Inner = styled.div`
+  transition: opacity 0.25s ease;
+  opacity: ${({ faded }) => (faded ? 0 : 1)};
+  display: flex;
+  flex-direction: columns;
+  align-items: center;
+  height: 100%;
+  position: relative;
+`
+
+const Close = styled(Icon)`
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  color: white;
   cursor: pointer;
 `
 
 type Props = {}
 
 type State = {
-  open: boolean
+  open: boolean,
+  faded: boolean
 }
 
 export default class BottomArea extends React.Component<Props, State> {
   state = {
-    open: false
+    open: false,
+    faded: false
+  }
+
+  open: boolean = false
+  container: ?HTMLElement
+
+  setOpen = () => {
+    this.setState(
+      {
+        faded: true
+      },
+      () =>
+        anime({
+          targets: this.container,
+          width: 400,
+          height: 490,
+          opacity: 1,
+          complete: () => {
+            this.setState({
+              faded: false,
+              open: true
+            })
+          }
+        })
+    )
+  }
+
+  setClosed = () => {
+    this.setState(
+      {
+        faded: true
+      },
+      () =>
+        anime({
+          targets: this.container,
+          width: 120,
+          height: 45,
+          opacity: 1,
+          complete: () => {
+            this.setState({
+              faded: false,
+              open: false
+            })
+          }
+        })
+    )
   }
 
   componentDidMount() {
-    console.log(this.container)
     anime({
-      targets: findDOMNode(this.container),
+      targets: this.container,
       translateX: '-50%',
       //   transform: 'translate(-50%, 0)',
       opacity: 1
@@ -46,17 +106,22 @@ export default class BottomArea extends React.Component<Props, State> {
   }
 
   render() {
-    const { open } = this.state
-
+    const { faded, open } = this.state
     return (
-      <Container ref={(ref) => (this.container = ref)}>
-        {!open ? (
-          <Button onClick={() => this.setState({ open: true })}>
-            Öppna ditt hem
-          </Button>
-        ) : (
-          <CreateOpenPlaceBookingContainer />
-        )}
+      <Container
+        onClick={!open ? this.setOpen : () => {}}
+        open={open}
+        ref={(ref) => (this.container = findDOMNode(ref))}
+      >
+        <Inner faded={faded}>
+          {open && (
+            <React.Fragment>
+              <Close type="close" onClick={this.setClosed} />
+              <CreateOpenPlaceBookingContainer />
+            </React.Fragment>
+          )}
+          {!open && 'Öppna ditt hem'}
+        </Inner>
       </Container>
     )
   }

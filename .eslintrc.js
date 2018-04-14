@@ -10,6 +10,8 @@ module.exports = {
   rules: {
     'class-methods-use-this': 0,
     'no-undef': 0,
-    'import/prefer-default-export': 0
+    'import/prefer-default-export': 0,
+    'no-return-assign': 0,
+    'no-underscore-dangle': 0
   }
 }
