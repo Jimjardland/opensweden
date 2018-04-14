@@ -42,7 +42,7 @@ class PlaceStore {
   }
 
   @action
-  async confirmRoom(code: number) {
+  confirmRoom = async (code: number) => {
     runInAction(() => (this.isBusy = true))
 
     try {

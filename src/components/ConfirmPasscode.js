@@ -1,39 +1,84 @@
-// @flow
-
+/* eslint-disable */
 import * as React from 'react'
 import { observer } from 'mobx-react'
 import { Button, Form, InputNumber } from 'antd'
 import styled from 'styled-components'
 import PlaceStore from '../stores/PlaceStore'
-import Input from './Input'
 import Loader from './Loader'
+
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+`
 
 type Props = {
   form: Object
 }
 
-type State = {}
+type State = {
+  numbers: Array<number | void>
+}
 
 @observer
 class ConfirmPasscode extends React.Component<Props, State> {
   state = {
-    code: ''
+    numbers: Array.from(new Array(6))
+  }
+
+  onChange = (e, index) => {
+    const value = e.target.value
+    if (isNaN(value)) {
+      return
+    }
+
+    if (value.length > 1) {
+      if (this.refs[index + 1]) {
+        this.refs[index + 1].focus()
+      }
+      return
+    }
+
+    if (value.length === 1 && !isNaN(value)) {
+      const numbers = this.state.numbers
+      const newNumbers = numbers.map((n, i) => {
+        if (i !== index) return n
+        return parseInt(value)
+      })
+
+      this.setState(
+        {
+          numbers: newNumbers
+        },
+        () => {
+          if (this.refs[index + 1]) {
+            this.refs[index + 1].focus()
+          }
+        }
+      )
+    } else {
+      const numbers = this.state.numbers
+      const newNumbers = numbers.map((n, i) => {
+        if (i !== index) return n
+        return undefined
+      })
+
+      this.setState({
+        numbers: newNumbers
+      })
+    }
   }
 
   onSubmit = (e) => {
     e.preventDefault()
-
-    this.props.form.validateFields((err, { code }) => {
-      if (!err) {
-        PlaceStore.confirmRoom(code)
-          .then(() => {
-            console.log('created')
-          })
-          .catch((e) => {
-            console.log('###', e)
-          })
-      }
-    })
+    const code = parseInt(this.state.numbers.join(''))
+    console.log({ code })
+    PlaceStore.confirmRoom(code)
+      .then(() => {
+        console.log('created')
+      })
+      .catch((e) => {
+        console.log('###', e)
+      })
   }
 
   inner() {
@@ -41,36 +86,39 @@ class ConfirmPasscode extends React.Component<Props, State> {
       return <Loader />
     }
 
-    const { form } = this.props
+    const ints = Array.from(new Array(6)).map((_, i) => i)
+    const { numbers } = this.state
+    const canSubmit = numbers.filter((n) => !isNaN(n)).length === ints.length
 
     return (
-      <Form onSubmit={this.onSubmit}>
-        <Form.Item label={'Code'}>
-          {form.getFieldDecorator('code', {
-            validateTrigger: 'onBlur',
-            rules: [
-              {
-                len: 6,
-                message: 'Fyll i 6 siffror'
-              }
-            ]
-          })(<Input />)}
-        </Form.Item>
-
-        <Button htmlType="submit">Skicka</Button>
-      </Form>
+      <form onSubmit={this.onSubmit} className="theCode">
+        <Wrapper>
+          {ints.map((n, index) => (
+            <input
+              key={index}
+              ref={index}
+              autoFocus={index === 0}
+              className="codeInput"
+              value={numbers[index] !== undefined ? numbers[index] : ''}
+              onChange={(e) => this.onChange(e, index)}
+            />
+          ))}
+        </Wrapper>
+        <Button type="primary" disabled={!canSubmit} htmlType="submit">
+          Skicka
+        </Button>
+      </form>
     )
   }
 
   render() {
     return (
       <div>
-        <h2>Skriv in din passcode</h2>
-
+        <h2>Fyll i din kod</h2>
         {this.inner()}
       </div>
     )
   }
 }
 
-export default Form.create({})(ConfirmPasscode)
+export default ConfirmPasscode
