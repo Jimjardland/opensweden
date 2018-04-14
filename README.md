@@ -1,5 +1,5 @@
 # OpenSweden
-This is our contribution to Hack for sweden 2018
+This is our contribution to Hack for Sweden 2018
 
 ## Setup
 Make sure docker is running on your machine.
