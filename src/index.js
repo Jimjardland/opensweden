@@ -1,12 +1,14 @@
 // @flow
 import { AppContainer } from 'react-hot-loader'
-import { ApolloProvider } from 'react-apollo'
 import React from 'react'
 import ReactDOM from 'react-dom'
+import { create } from 'mobx-persist'
 import 'antd/dist/antd.css'
 import './index.css'
 import App from './App'
-import client from './ApolloClient'
+import stores from './stores'
+
+const hydrate = create()
 
 const root = document.getElementById('root')
 
@@ -17,15 +19,19 @@ if (!root) {
 const render = (Component) => {
   ReactDOM.render(
     <AppContainer>
-      <ApolloProvider client={client}>
-        <Component />
-      </ApolloProvider>
+      <Component />
     </AppContainer>,
     root
   )
 }
 
-render(App)
+const init = async () => {
+  const rehydrates = stores.map((store, i) => hydrate(i, store))
+  await Promise.all(rehydrates)
+  render(App)
+}
+
+init()
 
 declare var module: {
   hot: {

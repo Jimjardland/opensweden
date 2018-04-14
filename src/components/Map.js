@@ -64,7 +64,7 @@ export default class Map extends React.PureComponent<Props, State> {
       type: 'circle',
       source: id,
       paint: {
-        'circle-radius': 50,
+        'circle-radius': 30,
         'circle-color': 'red',
         'circle-blur': 0.3
       }

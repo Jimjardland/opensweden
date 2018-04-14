@@ -1,0 +1,64 @@
+// @flow
+
+import { observable, action, runInAction } from 'mobx'
+import { persist } from 'mobx-persist'
+import { message } from 'antd'
+import MainApi from '../utils/MainApi'
+import ProgressStore from './ProgressStore'
+
+type Event = {}
+
+class PlaceStore {
+  @observable
+  @persist('list')
+  _places: Array<Event> = []
+  @observable fetchingInitEvents: boolean = false
+  @observable isBusy: boolean = false
+
+  @observable
+  @persist
+  confirmId: ?string
+
+  @action
+  async createPlace(data: Object) {
+    runInAction(() => (this.isBusy = true))
+
+    try {
+      const { id } = await MainApi.post('/add-place', data)
+      runInAction(() => (this.confirmId = id))
+    } catch (e) {
+      message.error('Kan inte skapa rum')
+      console.warn(e)
+      throw e
+    }
+    runInAction(() => (this.isBusy = false))
+  }
+
+  @action
+  async confirmRoom(code: number) {
+    runInAction(() => (this.isBusy = true))
+
+    try {
+      await MainApi.post('/publish-place', {
+        code,
+        id: this.confirmId
+      })
+      ProgressStore.setShared()
+      this.fetchPlaces()
+    } catch (e) {
+      message.error('Kan inte skapa rum')
+      console.warn(e)
+      throw e
+    } finally {
+      runInAction(() => (this.isBusy = false))
+    }
+  }
+
+  @action
+  async fetchPlaces() {
+    const places = await MainApi.get('/get-available-places')
+    runInAction(() => (this._places = places))
+  }
+}
+
+export default new PlaceStore()

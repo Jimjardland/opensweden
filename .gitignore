@@ -9,3 +9,4 @@ tmp
 yarn.lock
 config.json
 .vscode
+.package-lock.json
