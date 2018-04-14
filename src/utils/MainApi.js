@@ -19,11 +19,11 @@ class MainApi {
     }).then((res) => {
       const err = res.status < 200 || res.status > 300
 
-      return res.json().then((res) => {
+      return res.json().then((data) => {
         if (err) {
-          throw res
+          throw data
         }
-        return err
+        return data
       })
     })
   }

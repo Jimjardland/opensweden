@@ -79,3 +79,34 @@ body {
 .leaflet-container {
   background: #191a1a !important;
 }
+
+h2 {
+  font-family: 'GillSans';
+}
+
+.codeInput {
+  background-color: #58555b;
+  color: white;
+  font-size: 20px;
+  margin: 0px 4px;
+  font-family: 'GillSans';
+  text-align: center;
+  width: 45px;
+  height: 55px;
+}
+
+.sendButton {
+  color: white;
+  background-color: rgb(37, 146, 252);
+  font-size: 10px;
+  border: none;
+  width: 50px;
+  height: 20px;
+  margin-top: 8px;
+  margin-left: 50px;
+  border-radius: 3px;
+}
+
+.sendButton:hover {
+  background-color: rgb(107, 171, 235);
+}
