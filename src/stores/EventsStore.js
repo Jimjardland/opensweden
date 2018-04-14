@@ -17,7 +17,7 @@ class EventsStore {
   async fetchEventsInit() {
     runInAction(() => (this.fetchingInitEvents = true))
 
-    const events = await MainApi.get('http://localhost:1339/current-events')
+    const events = await MainApi.get('/current-events')
 
     runInAction(() => (this._events = events))
   }

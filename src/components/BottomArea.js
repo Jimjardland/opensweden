@@ -17,6 +17,7 @@ const Container = styled.div`
   background-color: ${primary};
   border-radius: 4px;
   padding: 12px;
+  cursor: ${({ open }) => (open ? 'auto' : 'pointer')};
 `
 
 const Inner = styled.div`
@@ -27,13 +28,6 @@ const Inner = styled.div`
   align-items: center;
   height: 100%;
   position: relative;
-`
-
-const Button = styled.div`
-  padding: 6px 12px;
-  padding: 0;
-  cursor: pointer;
-  color: white;
 `
 
 const Close = styled(Icon)`
@@ -68,8 +62,8 @@ export default class BottomArea extends React.Component<Props, State> {
       () =>
         anime({
           targets: this.container,
-          width: 300,
-          height: 320,
+          width: 400,
+          height: 490,
           opacity: 1,
           complete: () => {
             this.setState({
@@ -114,7 +108,11 @@ export default class BottomArea extends React.Component<Props, State> {
   render() {
     const { faded, open } = this.state
     return (
-      <Container ref={(ref) => (this.container = findDOMNode(ref))}>
+      <Container
+        onClick={!open && this.setOpen}
+        open={open}
+        ref={(ref) => (this.container = findDOMNode(ref))}
+      >
         <Inner faded={faded}>
           {open && (
             <React.Fragment>
@@ -122,7 +120,7 @@ export default class BottomArea extends React.Component<Props, State> {
               <CreateOpenPlaceBookingContainer />
             </React.Fragment>
           )}
-          {!open && <Button onClick={this.setOpen}>Öppna ditt hem</Button>}
+          {!open && 'Öppna ditt hem'}
         </Inner>
       </Container>
     )

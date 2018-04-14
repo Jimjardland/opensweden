@@ -8,18 +8,17 @@ type Event = {}
 class RoomStore {
   @observable _events: Array<Event> = []
   @observable fetchingInitEvents: boolean = false
-
-  get events(): Array<Event> {
-    return this._events.slice()
-  }
+  @observable isCreating: boolean = false
 
   @action
-  async fetchEventsInit() {
-    runInAction(() => (this.fetchingInitEvents = true))
+  async createPlace(data: Object) {
+    runInAction(() => (this.isCreating = true))
 
-    const events = await MainApi.get('http://localhost:1339/current-events')
+    // runInAction(() => (this.fetchingInitEvents = true))
 
-    runInAction(() => (this._events = events))
+    const res = await MainApi.post('/add-place', data)
+
+    runInAction(() => (this.isCreating = true))
   }
 }
 

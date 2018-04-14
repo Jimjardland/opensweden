@@ -19,6 +19,7 @@
     "got": "^8.3.0",
     "graphql": "^0.13.2",
     "graphql-tag": "^2.8.0",
+    "knuth-shuffle": "^1.0.8",
     "mapbox-gl": "^0.44.2",
     "mobx": "^4.1.1",
     "mobx-react": "^5.0.0",
@@ -37,6 +38,7 @@
     "react-scripts": "1.1.4",
     "restify": "^7.1.1",
     "simple-pg": "^1.0.0",
+    "smspro": "^1.1.0",
     "snakecase-keys": "^1.1.1",
     "styled-components": "^3.2.5"
   },
