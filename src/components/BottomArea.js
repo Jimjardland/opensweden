@@ -5,7 +5,7 @@ import { findDOMNode } from 'react-dom'
 import styled from 'styled-components'
 import anime from 'animejs'
 import { primary } from '../config/colors'
-import CreateOpenPlaceBookingContainer from '../containers/CreateOpenPlaceBookingContainer'
+import PlaceWrapper from './PlaceWrapper'
 
 const Container = styled.div`
   position: fixed;
@@ -117,7 +117,7 @@ export default class BottomArea extends React.Component<Props, State> {
           {open && (
             <React.Fragment>
               <Close type="close" onClick={this.setClosed} />
-              <CreateOpenPlaceBookingContainer />
+              <PlaceWrapper />
             </React.Fragment>
           )}
           {!open && 'Öppna ditt hem'}

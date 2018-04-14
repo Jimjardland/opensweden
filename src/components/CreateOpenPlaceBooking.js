@@ -4,9 +4,9 @@ import styled from 'styled-components'
 import { observer } from 'mobx-react'
 import { Form, Button, Spin, Icon } from 'antd'
 import Input from './Input'
-import RoomStore from '../stores/RoomStore'
-
-const antIcon = <Icon type="loading" style={{ fontSize: 24 }} spin />
+import PlaceStore from '../stores/PlaceStore'
+import ProgressStore from '../stores/ProgressStore'
+import Loader from './Loader'
 
 type Props = {
   form: Object,
@@ -32,7 +32,7 @@ class CreateOpenPlaceBooking extends React.Component<Props, State> {
 
     this.props.form.validateFields((err, values) => {
       if (!err) {
-        RoomStore.createPlace(values).then(() => console.log('done'))
+        PlaceStore.createPlace(values).then(ProgressStore.setPending)
       }
     })
   }
@@ -40,7 +40,7 @@ class CreateOpenPlaceBooking extends React.Component<Props, State> {
   render() {
     const { getFieldDecorator } = this.props.form
 
-    if (RoomStore.isCreating) return <Spin indicator={antIcon} />
+    if (PlaceStore.isBusy) return <Loader />
 
     const fields = [
       {
