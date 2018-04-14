@@ -71,7 +71,7 @@ class ConfirmPasscode extends React.Component<Props, State> {
 
   onSubmit = (e) => {
     e.preventDefault()
-    const code = parseInt(this.state.numbers.join(''))
+    const code = this.state.numbers.join('')
 
     PlaceStore.confirmRoom(code)
       .then(() => {

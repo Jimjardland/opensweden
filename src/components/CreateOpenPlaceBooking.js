@@ -35,7 +35,7 @@ class CreateOpenPlaceBooking extends React.Component<Props> {
       {
         label: 'Telefonnummer',
         name: 'phoneNumber',
-        initialValue: '0734119576'
+        initialValue: '0703679949'
       },
       {
         label: 'Adress',
@@ -58,7 +58,6 @@ class CreateOpenPlaceBooking extends React.Component<Props> {
         <h2>Dina uppgifter</h2>
         {fields.map((f) =>
           getFieldDecorator(f.name, {
-            initialValue: f.initialValue,
             rules: [
               {
                 required: true,
@@ -67,6 +66,15 @@ class CreateOpenPlaceBooking extends React.Component<Props> {
             ]
           })(<FormField placeholder={f.label} />)
         )}
+
+        {getFieldDecorator('extras', {
+          rules: [
+            {
+              required: true,
+              message: 'Fält är obligatoriskt'
+            }
+          ]
+        })(<FormField type="textarea" placeholder="Meddelande" />)}
 
         <Button style={{ marginRight: 8 }} onClick={onCancel}>
           Ångra

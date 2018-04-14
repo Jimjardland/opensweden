@@ -53,9 +53,9 @@ export default class SelectedPlace extends React.PureComponent<Props, State> {
             key="submit"
             type="primary"
             style={{ marginLeft: 8 }}
-            href={`tel:${place.phone_number}`}
+            href={`sms:${place.phone_number}`}
           >
-            Ring
+            Sms:a
           </Button>
         ]}
       >
@@ -76,11 +76,11 @@ export default class SelectedPlace extends React.PureComponent<Props, State> {
           </div>
         </Row>
 
-        {place.extra && (
+        {place.extras && (
           <Row>
             <b>Meddelande</b>
             <div>
-              <div>{place.extra}</div>
+              <div>{place.extras}</div>
             </div>
           </Row>
         )}

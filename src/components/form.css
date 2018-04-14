@@ -33,6 +33,13 @@ input {
   border: none;
 }
 
+textarea {
+  background: none;
+  border: none;
+  width: 100%;
+  resize: initial;
+}
+
 .focus-input {
   position: absolute;
   display: block;

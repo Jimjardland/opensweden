@@ -13,16 +13,21 @@ import ConfirmPasscode from './ConfirmPasscode'
 
 const Container = styled.div`
   position: fixed;
-  transform: translate(-50%, -50px);
-  bottom: 50px;
+  transform: translate(-50%, 0px);
+  bottom: 20px;
   left: 50%;
   z-index: 10;
+  width: 100%;
   opacity: 1;
+  display: flex;
+  justify-content: center;
 `
 
-const Sharing = styled.div`
-  padding: 20px;
-  background: ${red};
+const Sharing = styled.h2`
+  color: #ffdd54;
+  display: block;
+  font-size: 30px;
+  text-align: center;
 `
 
 const Close = styled(Icon)`
@@ -53,7 +58,7 @@ export default class BottomArea extends React.Component<Props, State> {
     let inner = null
 
     if (step === 'sharing') {
-      inner = <Sharing>Du delar din plats</Sharing>
+      inner = <Sharing>Du erbjuder nu skydd</Sharing>
     } else if (step === 'pending') {
       inner = <ConfirmPasscode />
     } else if (!open) {
@@ -69,7 +74,6 @@ export default class BottomArea extends React.Component<Props, State> {
         />
       )
     }
-
     return <Container>{inner}</Container>
   }
 }

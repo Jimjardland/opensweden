@@ -13,10 +13,10 @@ type Props = {
 @observer
 export default class MapContainer extends React.Component<Props> {
   componentDidMount() {
-    // setInterval(() => {
-    //   EventsStore.fetchEvents()
-    //   PlaceStore.fetchPlaces()
-    // }, 3000)
+    setInterval(() => {
+      EventsStore.fetchEvents()
+      PlaceStore.fetchPlaces()
+    }, 3000)
   }
   render() {
     return (
