@@ -1,15 +1,17 @@
 /* eslint-disable */
 import * as React from 'react'
 import { observer } from 'mobx-react'
-import { Button, Form, InputNumber } from 'antd'
+import { Button, Form, InputNumber, Icon } from 'antd'
 import styled from 'styled-components'
 import PlaceStore from '../stores/PlaceStore'
 import Loader from './Loader'
+import ProgressStore from '../stores/ProgressStore'
 
 const Wrapper = styled.div`
   display: flex;
   flex-direction: row;
   margin-bottom: 20px;
+  position: relative;
 `
 
 type Props = {
@@ -69,17 +71,15 @@ class ConfirmPasscode extends React.Component<Props, State> {
     }
   }
 
+  onCancel = () => {
+    ProgressStore.setStart()
+  }
+
   onSubmit = (e) => {
     e.preventDefault()
     const code = this.state.numbers.join('')
 
     PlaceStore.confirmRoom(code)
-      .then(() => {
-        console.log('created')
-      })
-      .catch((e) => {
-        console.log('###', e)
-      })
   }
 
   inner() {
@@ -89,12 +89,14 @@ class ConfirmPasscode extends React.Component<Props, State> {
 
     return (
       <form onSubmit={this.onSubmit} className="wrapper">
+        <Icon className="pass-close" onClick={this.onCancel} type="close" />
         <h2>Fyll i din kod</h2>
         <Wrapper>
           {ints.map((n, index) => (
             <input
               key={index}
               ref={index}
+              type="number"
               autoFocus={index === 0}
               className="codeInput"
               value={numbers[index] !== undefined ? numbers[index] : ''}

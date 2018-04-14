@@ -9,6 +9,11 @@ class ProgressStore {
   step: 'start' | 'pending' | 'sharing' = 'start'
 
   @action
+  setStart = () => {
+    this.step = 'start'
+  }
+
+  @action
   setPending = () => {
     this.step = 'pending'
   }

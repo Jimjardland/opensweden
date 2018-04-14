@@ -58,9 +58,8 @@ body {
 }
 
 .place-circle {
-  width: 28px !important;
-  height: 28px !important;
-  border-radius: 50%;
+  width: 25px !important;
+  height: 25px !important;
   background: url('./resources/home.png');
   background-size: cover;
   background-repeat: no-repeat;
@@ -111,4 +110,11 @@ h2 {
 
 .sendButton:hover {
   background-color: rgb(107, 171, 235);
+}
+
+.pass-close {
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  cursor: pointer;
 }

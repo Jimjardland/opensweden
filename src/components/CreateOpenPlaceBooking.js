@@ -68,14 +68,9 @@ class CreateOpenPlaceBooking extends React.Component<Props> {
           })(<FormField placeholder={f.label} />)
         )}
 
-        {getFieldDecorator('extras', {
-          rules: [
-            {
-              required: true,
-              message: 'Fält är obligatoriskt'
-            }
-          ]
-        })(<FormField type="textarea" placeholder="Meddelande" />)}
+        {getFieldDecorator('extras')(
+          <FormField type="textarea" placeholder="Meddelande" />
+        )}
 
         <Button style={{ marginRight: 8 }} onClick={onCancel}>
           Ångra
