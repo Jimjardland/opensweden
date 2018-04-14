@@ -125,7 +125,12 @@ class CreateOpenPlaceBooking extends React.Component<Props> {
           type="close"
         />
 
-        <Button type="primary" loading={PlaceStore.isBusy} htmlType="submit">
+        <Button
+          type="primary"
+          className="secondButton"
+          loading={PlaceStore.isBusy}
+          htmlType="submit"
+        >
           Skicka
         </Button>
       </Form>

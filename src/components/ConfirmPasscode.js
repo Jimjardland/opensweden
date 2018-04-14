@@ -113,6 +113,7 @@ class ConfirmPasscode extends React.Component<Props, State> {
         </Wrapper>
         <Button
           type="primary"
+          className="secondButton"
           loading={PlaceStore.isBusy}
           disabled={!canSubmit}
           htmlType="submit"

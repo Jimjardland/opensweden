@@ -17,7 +17,7 @@
 }
 
 .field-error .focus-input::before {
-  background: #ff3838;
+  background: #a90000;
   width: 100%;
 }
 

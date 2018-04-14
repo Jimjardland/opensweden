@@ -99,18 +99,6 @@ h2 {
   border-color: #ffffff52;
 }
 
-.sendButton {
-  color: white;
-  background-color: rgb(37, 146, 252);
-  font-size: 10px;
-  border: none;
-  width: 50px;
-  height: 20px;
-  margin-top: 8px;
-  margin-left: 50px;
-  border-radius: 3px;
-}
-
 .sendButton:hover {
   background-color: rgb(107, 171, 235);
 }
@@ -124,7 +112,7 @@ h2 {
 
 .morph {
   transition: all 0.3s ease;
-  background: #223535;
+  background: #7158e2;
   max-width: 400px;
 }
 
@@ -175,5 +163,20 @@ input::-webkit-inner-spin-button {
 }
 
 .anticon.anticon-exclamation-circle {
+  display: none;
+}
+
+.secondButton {
+  background-color: #4b4b4b;
+  border-color: #4b4b4b;
+}
+
+.secondButton:hover,
+.secondButton:hover {
+  background-color: #3d3d3d;
+  border-color: #3d3d3d;
+}
+
+.ant-btn-clicked:after {
   display: none;
 }
