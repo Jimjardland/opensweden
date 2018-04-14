@@ -42,11 +42,11 @@ export default class ActionButtons extends React.Component<Props, State> {
           <p>
             Utvecklades under{' '}
             <a target="_blank" href="https://hackforsweden.se/">
-              Hack for Sweden 2018
+              Hack for Sweden 2018.
             </a>{' '}
-            och mer information finns på{' '}
+            Mer information finns på{' '}
             <a target="_blank" href="https://github.com/Jimjardland/opensweden">
-              Github
+              GitHub
             </a>
           </p>
         </div>
@@ -54,7 +54,7 @@ export default class ActionButtons extends React.Component<Props, State> {
     } else if (type === 'safety') {
       return (
         <div>
-          <p>Här kommer oficella meddelanden listas från MSB.</p>
+          <p>Här kommer officella meddelanden listas från MSB.</p>
         </div>
       )
     } else if (type === 'help') {
