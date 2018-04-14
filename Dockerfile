@@ -22,6 +22,8 @@ RUN npm install -s --production
 
 # Code.
 ADD ./lib /app/lib
+ADD ./migrations /app/migrations
+ADD ./mockdata.json /app/mockdata.json
 
 # Run.
 CMD npm start
