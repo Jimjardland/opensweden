@@ -12,12 +12,16 @@ class PlaceStore {
   @observable
   @persist('list')
   _places: Array<Event> = []
-  @observable fetchingInitEvents: boolean = false
+  @observable fetchingInitPlaces: boolean = false
   @observable isBusy: boolean = false
 
   @observable
   @persist
   confirmId: ?string
+
+  get places(): Array<Event> {
+    return this._places.slice()
+  }
 
   @action
   async createPlace(data: Object) {
@@ -55,9 +59,16 @@ class PlaceStore {
   }
 
   @action
-  async fetchPlaces() {
+  async fetchPlaces(init: boolean = false) {
+    if (init) {
+      runInAction(() => (this.fetchingInitPlaces = true))
+    }
+
     const places = await MainApi.get('/get-available-places')
-    runInAction(() => (this._places = places))
+    runInAction(() => {
+      this._places = places
+      this.fetchingInitPlaces = false
+    })
   }
 }
 

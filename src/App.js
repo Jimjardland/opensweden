@@ -13,6 +13,9 @@ export default class App extends React.Component<Props> {
     PlaceStore.fetchPlaces()
   }
   render() {
+    if (EventsStore.fetchingInitEvents || PlaceStore.fetchingInitPlaces)
+      return 'Loading...'
+
     return <MainView />
   }
 }
