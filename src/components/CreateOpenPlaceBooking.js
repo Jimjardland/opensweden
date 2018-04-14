@@ -35,7 +35,7 @@ class CreateOpenPlaceBooking extends React.Component<Props> {
       {
         label: 'Telefonnummer',
         name: 'phoneNumber',
-        initialValue: '0703679949'
+        initialValue: '0734119576'
       },
       {
         label: 'Adress',
@@ -58,6 +58,7 @@ class CreateOpenPlaceBooking extends React.Component<Props> {
         <h2>Dina uppgifter</h2>
         {fields.map((f) =>
           getFieldDecorator(f.name, {
+            initialValue: f.initialValue,
             rules: [
               {
                 required: true,
