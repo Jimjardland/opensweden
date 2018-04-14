@@ -49,7 +49,7 @@ class CreateOpenPlaceBooking extends React.Component<Props> {
         initialValue: '11457'
       },
       {
-        label: 'Stad',
+        label: 'Ort',
         name: 'city',
         initialValue: 'Stockholm'
       }

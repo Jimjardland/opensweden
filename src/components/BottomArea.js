@@ -59,7 +59,7 @@ export default class BottomArea extends React.Component<Props, State> {
     } else if (!open) {
       inner = (
         <Button type="primary" onClick={() => this.setState({ open: true })}>
-          Bjud in
+          Erbjud skydd
         </Button>
       )
     } else if (step === 'start') {
