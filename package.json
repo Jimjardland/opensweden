@@ -44,10 +44,13 @@
     "styled-components": "^3.2.5"
   },
   "scripts": {
-    "start": "react-app-rewired start --config-overrides ./scripts/config-overides.js",
+    "start":
+      "react-app-rewired start --config-overrides ./scripts/config-overides.js",
     "start:server": "node ./lib/index.js",
-    "build": "react-app-rewired build --config-overrides ./scripts/config-overides.js",
-    "test": "react-app-rewired test --env=jsdom --config-overrides ./scripts/config-overides.js",
+    "build":
+      "react-app-rewired build --config-overrides ./scripts/config-overides.js",
+    "test":
+      "react-app-rewired test --env=jsdom --config-overrides ./scripts/config-overides.js",
     "eject": "react-scripts eject",
     "migrate": "./node_modules/.bin/node-pg-migrate up",
     "migrate:down": "./node_modules/.bin/node-pg-migrate down",
@@ -55,5 +58,6 @@
   },
   "devDependencies": {
     "flow-bin": "^0.69.0"
-  }
+  },
+  "proxy": "http://localhost:1339/"
 }
