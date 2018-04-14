@@ -28,6 +28,8 @@ class EventsStore {
     } catch (e) {
       message.error('Kan inte hämta händelser')
       console.warn(e)
+    } finally {
+      runInAction(() => (this.fetchingInitEvents = false))
     }
   }
 }

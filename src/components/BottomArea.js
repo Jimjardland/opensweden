@@ -54,6 +54,8 @@ export default class BottomArea extends React.Component<Props, State> {
 
     if (step === 'sharing') {
       inner = <Sharing>Du delar din plats</Sharing>
+    } else if (step === 'pending') {
+      inner = <ConfirmPasscode />
     } else if (!open) {
       inner = (
         <Button type="primary" onClick={() => this.setState({ open: true })}>
@@ -61,11 +63,12 @@ export default class BottomArea extends React.Component<Props, State> {
         </Button>
       )
     } else if (step === 'start') {
-      inner = <CreateOpenPlaceBooking />
-    } else if (step === 'pending') {
-      inner = <ConfirmPasscode />
+      inner = (
+        <CreateOpenPlaceBooking
+          onCancel={() => this.setState({ open: true })}
+        />
+      )
     }
-    console.log({ inner, step })
 
     return <Container>{inner}</Container>
   }
