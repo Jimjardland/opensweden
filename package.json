@@ -46,7 +46,7 @@
   },
   "scripts": {
     "dev": "react-app-rewired start --config-overrides ./scripts/config-overides.js",
-    "start": "export DATABASE_URL=postgres://user:password@postgres/opensweden && ./node_modules/.bin/node-pg-migrate up && node ./lib/index.js",
+    "start": "./node_modules/.bin/node-pg-migrate up && node ./lib/index.js",
     "start:server": "node ./lib/index.js",
     "build": "react-app-rewired build --config-overrides ./scripts/config-overides.js",
     "test": "react-app-rewired test --env=jsdom --config-overrides ./scripts/config-overides.js",
