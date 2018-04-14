@@ -67,7 +67,7 @@ class PlaceStore {
       runInAction(() => (this.fetchingInitPlaces = true))
     }
 
-    const places = await MainApi.get('/get-available-places')
+    const places = await MainApi.get('/get-available-places/mock')
     runInAction(() => {
       this._places = places
       this.fetchingInitPlaces = false
