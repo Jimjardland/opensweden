@@ -8,7 +8,7 @@ import ActionButtons from './ActionButtons'
 import BottomArea from './BottomArea'
 import SelectedPlace from './SelectedPlace'
 import PlaceStore from '../stores/PlaceStore'
-
+import ProgressStore from '../stores/ProgressStore'
 const Container = styled.div``
 
 type Props = {}
@@ -21,7 +21,7 @@ export default class MainView extends React.Component<Props> {
         <ActionButtons />
         <SelectedPlace selected={PlaceStore.selectedPlace} />
         <MapContainer>
-          <BottomArea />
+          <BottomArea step={ProgressStore.step} />
         </MapContainer>
       </Container>
     )

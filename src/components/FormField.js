@@ -6,14 +6,28 @@ type Props = {
   onChange: Function,
   placeholder?: string,
   value?: string,
-  type: string
+  type: string,
+  inputType: string
 }
 
-const FormField = ({ onChange, value, placeholder, type = 'input' }: Props) => (
-  <div className={classNames('field', { 'field-filled': Boolean(value) })}>
+const FormField = ({
+  onChange,
+  value,
+  placeholder,
+  inputType,
+  type = 'input',
+  error
+}: Props) => (
+  <div
+    className={classNames('field', {
+      'field-filled': Boolean(value),
+      'field-error': error
+    })}
+  >
     {type === 'input' && (
       <input
         value={value}
+        type={inputType}
         placeholder={placeholder}
         onChange={(e) => onChange(e.target.value)}
       />

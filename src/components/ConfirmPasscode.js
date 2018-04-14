@@ -11,6 +11,8 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: row;
   margin-bottom: 20px;
+  width: 100%;
+  justify-content: space-between;
   position: relative;
 `
 
@@ -89,7 +91,12 @@ class ConfirmPasscode extends React.Component<Props, State> {
 
     return (
       <form onSubmit={this.onSubmit} className="wrapper">
-        <Icon className="pass-close" onClick={this.onCancel} type="close" />
+        <Icon
+          className="pass-close"
+          fontSize={20}
+          onClick={this.onCancel}
+          type="close"
+        />
         <h2>Fyll i din kod</h2>
         <Wrapper>
           {ints.map((n, index) => (

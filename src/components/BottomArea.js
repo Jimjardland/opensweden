@@ -5,7 +5,7 @@ import { findDOMNode } from 'react-dom'
 import styled from 'styled-components'
 import anime from 'animejs'
 import { primary, red } from '../config/colors'
-import PlaceWrapper from './PlaceWrapper'
+import classNames from 'classnames'
 import ProgressStore from '../stores/ProgressStore'
 import { observer } from 'mobx-react'
 import CreateOpenPlaceBooking from './CreateOpenPlaceBooking'
@@ -13,9 +13,8 @@ import ConfirmPasscode from './ConfirmPasscode'
 
 const Container = styled.div`
   position: fixed;
-  transform: translate(-50%, 0px);
-  bottom: 20px;
-  left: 50%;
+  bottom: 0px;
+  left: 0;
   z-index: 10;
   width: 100%;
   opacity: 1;
@@ -24,56 +23,102 @@ const Container = styled.div`
 `
 
 const Sharing = styled.h2`
-  color: #ffdd54;
+  color: #ffaf40;
   display: block;
   font-size: 30px;
   text-align: center;
 `
 
-const Close = styled(Icon)`
-  position: absolute;
-  right: 5px;
-  top: 5px;
-  color: white;
-  cursor: pointer;
-`
-
-type Props = {}
+type Props = {
+  step: string
+}
 
 type State = {
-  open: boolean,
-  faded: boolean
+  faded: boolean,
+  step: string
 }
 
 @observer
 export default class BottomArea extends React.Component<Props, State> {
-  state = {
-    open: false,
-    faded: false
+  constructor(props: Props) {
+    super(props)
+
+    this.state = {
+      faded: false,
+      step: props.step
+    }
+  }
+
+  componentWillReceiveProps(nextProps: Props) {
+    if (nextProps.step !== this.props.step) {
+      this.setState({
+        faded: true
+      })
+
+      setTimeout(() => {
+        this.setState({
+          step: nextProps.step
+        })
+      }, 240)
+
+      setTimeout(() => {
+        this.setState({
+          faded: false
+        })
+      }, 240)
+    }
+  }
+
+  setOpen(open: boolean) {
+    ProgressStore.setOpen(open)
   }
 
   render() {
-    const { step } = ProgressStore
-    const { open } = this.state
+    const { step, faded } = this.state
     let inner = null
 
+    let options = {}
     if (step === 'sharing') {
-      inner = <Sharing>Du erbjuder nu skydd</Sharing>
+      return (
+        <Container>
+          <Sharing>Du erbjuder nu skydd</Sharing>
+        </Container>
+      )
     } else if (step === 'pending') {
+      options = {
+        className: 'bottom-password'
+      }
       inner = <ConfirmPasscode />
-    } else if (!open) {
-      inner = (
-        <Button type="primary" onClick={() => this.setState({ open: true })}>
-          Erbjud skydd
-        </Button>
-      )
     } else if (step === 'start') {
-      inner = (
-        <CreateOpenPlaceBooking
-          onCancel={() => this.setState({ open: false })}
-        />
-      )
+      options = {
+        className: 'bottom-start',
+        onClick: () => {
+          this.setOpen(true)
+        }
+      }
+      inner = <div className="open-button">Erbjud skydd</div>
+    } else if (step === 'open') {
+      options = {
+        className: 'bottom-open'
+      }
+      inner = <CreateOpenPlaceBooking onCancel={() => this.setOpen(false)} />
     }
-    return <Container>{inner}</Container>
+
+    const { className, ...rest } = options
+
+    return (
+      <Container>
+        <div className={classNames('morph', className)} {...rest}>
+          <div
+            className="content"
+            style={{
+              opacity: faded ? 0 : 1
+            }}
+          >
+            {inner}
+          </div>
+        </div>
+      </Container>
+    )
   }
 }

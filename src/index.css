@@ -88,12 +88,15 @@ h2 {
   /* background-color: #58555b; */
   color: white;
   font-size: 20px;
-  margin: 0px 4px;
   font-family: 'GillSans';
   text-align: center;
   width: 45px;
   height: 55px;
   border: 1px solid #ffffff52;
+}
+
+.codeInput:focus {
+  border-color: #ffffff52;
 }
 
 .sendButton {
@@ -117,4 +120,60 @@ h2 {
   right: 15px;
   top: 15px;
   cursor: pointer;
+}
+
+.morph {
+  transition: all 0.3s ease;
+  background: #223535;
+  max-width: 400px;
+}
+
+.content {
+  transition: opacity 0.15s ease;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  /* display: none; <- Crashes Chrome on hover */
+  -webkit-appearance: none;
+  margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+.bottom-password {
+  width: 100%;
+  height: 210px;
+  border-radius: 4px;
+}
+
+.bottom-start {
+  width: 180px;
+  height: 62px;
+  text-align: center;
+  transform: translateY(-20px);
+  cursor: pointer;
+  color: white;
+  border-radius: 4px;
+}
+
+.bottom-start > div {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.open-button {
+  line-height: 1;
+  font-size: 20px;
+  font-family: 'GillSans';
+}
+
+.bottom-open {
+  width: 100%;
+  height: 468px;
+  border-radius: 4px;
+  transform: translateY(0px);
+}
+
+.anticon.anticon-exclamation-circle {
+  display: none;
 }

@@ -6,7 +6,7 @@ import { persist } from 'mobx-persist'
 class ProgressStore {
   @observable
   @persist
-  step: 'start' | 'pending' | 'sharing' = 'start'
+  step: 'start' | 'pending' | 'sharing' | 'open' = 'start'
 
   @action
   setStart = () => {
@@ -21,6 +21,11 @@ class ProgressStore {
   @action
   setShared = () => {
     this.step = 'sharing'
+  }
+
+  @action
+  setOpen = (open: boolean) => {
+    this.step = open ? 'open' : 'start'
   }
 }
 

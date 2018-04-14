@@ -1,10 +1,10 @@
 // @flow
 
 import * as React from 'react'
+import { Modal, Button } from 'antd'
 import { observer } from 'mobx-react'
 import styled from 'styled-components'
 import PlaceStore from '../stores/PlaceStore'
-import { Modal, Button } from 'antd'
 
 type Props = {
   selected: ?Object
@@ -14,7 +14,9 @@ type State = {
   visible: boolean
 }
 
-const Row = styled.div``
+const Row = styled.div`
+  margin-bottom: 15px;
+`
 
 @observer
 export default class SelectedPlace extends React.PureComponent<Props, State> {
