@@ -1,24 +1,19 @@
 // @flow
 import * as React from 'react'
 import styled from 'styled-components'
+import { Form, Button } from 'antd'
 import Input from './Input'
 
 type Props = {
+  form: Object,
   onSubmit: Function
 }
-
-const Form = styled.form`
-  display: block;
-`
 
 type State = {
   phoneNumber?: string
 }
 
-export default class CreateOpenPlaceBooking extends React.Component<
-  Props,
-  State
-> {
+class CreateOpenPlaceBooking extends React.Component<Props, State> {
   state = {}
 
   setFieldValue = (val: string, field: string) => {
@@ -27,20 +22,45 @@ export default class CreateOpenPlaceBooking extends React.Component<
     })
   }
 
-  onSubmit() {}
+  onSubmit = (e) => {
+    e.preventDefault()
+
+    this.props.form.validateFields((err, values) => {
+      console.log({ err, values })
+    })
+  }
 
   render() {
+    const { getFieldDecorator } = this.props.form
+
     return (
-      <Form>
-        <Input
-          value={this.state.phoneNumber}
-          onChange={(val) => this.setFieldValue(val, 'phoneNumber')}
-        />
-        <Input
-          value={this.state.address}
-          onChange={(val) => this.setFieldValue(val, 'address')}
-        />
+      <Form onSubmit={this.onSubmit}>
+        <Form.Item label="Telefonnummer">
+          {getFieldDecorator('phoneNumber', {
+            rules: [
+              {
+                required: true,
+                message: 'Fält är obligatoriskt'
+              }
+            ]
+          })(<Input />)}
+        </Form.Item>
+
+        <Form.Item label="Adress">
+          {getFieldDecorator('address', {
+            rules: [
+              {
+                required: true,
+                message: 'Fält är obligatoriskt'
+              }
+            ]
+          })(<Input />)}
+        </Form.Item>
+
+        <Button htmlType="submit">Skicka</Button>
       </Form>
     )
   }
 }
+
+export default Form.create({})(CreateOpenPlaceBooking)
