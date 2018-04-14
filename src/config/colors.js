@@ -1,2 +1,2 @@
-export const primary = '#5ea24c'
+export const primary = '#38ada9'
 export const red = 'red'

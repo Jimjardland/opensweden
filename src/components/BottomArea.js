@@ -65,7 +65,7 @@ export default class BottomArea extends React.Component<Props, State> {
     } else if (step === 'start') {
       inner = (
         <CreateOpenPlaceBooking
-          onCancel={() => this.setState({ open: true })}
+          onCancel={() => this.setState({ open: false })}
         />
       )
     }

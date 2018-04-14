@@ -18,8 +18,10 @@ class EventsStore {
   }
 
   @action
-  async fetchEventsInit() {
-    runInAction(() => (this.fetchingInitEvents = true))
+  async fetchEvents(init: boolean = false) {
+    if (init) {
+      runInAction(() => (this.fetchingInitEvents = true))
+    }
 
     try {
       const events = await MainApi.get('/current-events/mock')

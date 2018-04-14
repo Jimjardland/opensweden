@@ -7,3 +7,34 @@ body {
 .mapboxgl-missing-css {
   display: none;
 }
+
+.event-circle {
+  width: 50px !important;
+  height: 50px !important;
+  border-radius: 50%;
+  background: #de310b;
+  animation: event-glow 2s infinite;
+}
+
+@keyframes event-glow {
+  0% {
+    filter: blur(1px);
+    background: #de310b;
+  }
+
+  50% {
+    filter: blur(2px);
+    background: #eb2f06;
+  }
+  100% {
+    filter: blur(1px);
+    background: #de310b;
+  }
+}
+
+.person-circle {
+  width: 30px !important;
+  height: 30px !important;
+  border-radius: 50%;
+  background: blue;
+}

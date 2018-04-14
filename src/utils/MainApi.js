@@ -16,7 +16,12 @@ class MainApi {
       method: 'POST',
       headers,
       body: JSON.stringify(data)
-    }).then((res) => res.json())
+    }).then((res) => {
+      if (res.status < 200 || res.status > 300) {
+        throw res.statusText
+      }
+      return res.json()
+    })
   }
 }
 
