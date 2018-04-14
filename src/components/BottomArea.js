@@ -1,11 +1,15 @@
 // @flow
 import * as React from 'react'
-import { Icon } from 'antd'
+import { Icon, Button } from 'antd'
 import { findDOMNode } from 'react-dom'
 import styled from 'styled-components'
 import anime from 'animejs'
-import { primary } from '../config/colors'
+import { primary, red } from '../config/colors'
 import PlaceWrapper from './PlaceWrapper'
+import ProgressStore from '../stores/ProgressStore'
+import { observer } from 'mobx-react'
+import CreateOpenPlaceBooking from './CreateOpenPlaceBooking'
+import ConfirmPasscode from './ConfirmPasscode'
 
 const Container = styled.div`
   position: fixed;
@@ -13,21 +17,12 @@ const Container = styled.div`
   bottom: 50px;
   left: 50%;
   z-index: 10;
-  opacity: 0;
-  background-color: ${primary};
-  border-radius: 4px;
-  padding: 12px;
-  cursor: ${({ open }) => (open ? 'auto' : 'pointer')};
+  opacity: 1;
 `
 
-const Inner = styled.div`
-  transition: opacity 0.25s ease;
-  opacity: ${({ faded }) => (faded ? 0 : 1)};
-  display: flex;
-  flex-direction: columns;
-  align-items: center;
-  height: 100%;
-  position: relative;
+const Sharing = styled.div`
+  padding: 20px;
+  background: ${red};
 `
 
 const Close = styled(Icon)`
@@ -45,84 +40,36 @@ type State = {
   faded: boolean
 }
 
+@observer
 export default class BottomArea extends React.Component<Props, State> {
   state = {
     open: false,
     faded: false
   }
 
-  open: boolean = false
-  container: ?HTMLElement
-
-  setOpen = () => {
-    this.setState(
-      {
-        faded: true
-      },
-      () =>
-        anime({
-          targets: this.container,
-          width: 400,
-          height: 490,
-          opacity: 1,
-          complete: () => {
-            this.setState({
-              faded: false,
-              open: true
-            })
-          }
-        })
-    )
-  }
-
-  setClosed = () => {
-    this.setState(
-      {
-        faded: true
-      },
-      () =>
-        anime({
-          targets: this.container,
-          width: 120,
-          height: 45,
-          opacity: 1,
-          complete: () => {
-            this.setState({
-              faded: false,
-              open: false
-            })
-          }
-        })
-    )
-  }
-
-  componentDidMount() {
-    anime({
-      targets: this.container,
-      translateX: '-50%',
-      //   transform: 'translate(-50%, 0)',
-      opacity: 1
-    })
-  }
-
   render() {
-    const { faded, open } = this.state
-    return (
-      <Container
-        onClick={!open ? this.setOpen : () => {}}
-        open={open}
-        ref={(ref) => (this.container = findDOMNode(ref))}
-      >
-        <Inner faded={faded}>
-          {open && (
-            <React.Fragment>
-              <Close type="close" onClick={this.setClosed} />
-              <PlaceWrapper />
-            </React.Fragment>
-          )}
-          {!open && 'Öppna ditt hem'}
-        </Inner>
-      </Container>
-    )
+    const { step } = ProgressStore
+    const { open } = this.state
+    let inner = null
+
+    if (step === 'sharing') {
+      inner = <Sharing>Du delar din plats</Sharing>
+    } else if (step === 'pending') {
+      inner = <ConfirmPasscode />
+    } else if (!open) {
+      inner = (
+        <Button type="primary" onClick={() => this.setState({ open: true })}>
+          Bjud in
+        </Button>
+      )
+    } else if (step === 'start') {
+      inner = (
+        <CreateOpenPlaceBooking
+          onCancel={() => this.setState({ open: true })}
+        />
+      )
+    }
+
+    return <Container>{inner}</Container>
   }
 }

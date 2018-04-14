@@ -9,6 +9,7 @@
     "apollo-boost": "^0.1.4",
     "babel-eslint": "^8.2.3",
     "camelcase-keys": "^4.2.0",
+    "classnames": "^2.2.5",
     "eslint": "^4.19.1",
     "eslint-config-airbnb-base": "^12.1.0",
     "eslint-config-prettier": "^2.9.0",
@@ -57,5 +58,6 @@
   },
   "devDependencies": {
     "flow-bin": "^0.69.0"
-  }
+  },
+  "proxy": "http://localhost:1339/"
 }
