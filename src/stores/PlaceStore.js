@@ -33,7 +33,7 @@ class PlaceStore {
       const { id } = await MainApi.post('/add-place', data)
       runInAction(() => (this.confirmId = id))
     } catch (e) {
-      message.error('Kan inte skapa rum')
+      message.error(e.message || 'Kan inte skapa rum')
       console.warn(e)
       throw e
     } finally {
@@ -53,7 +53,7 @@ class PlaceStore {
       ProgressStore.setShared()
       this.fetchPlaces()
     } catch (e) {
-      message.error('Kan inte skapa rum')
+      message.error(e.message || 'Kan inte skapa rum')
       console.warn(e)
       throw e
     } finally {

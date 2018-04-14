@@ -58,7 +58,7 @@ class CreateOpenPlaceBooking extends React.Component<Props> {
       <Form className="bookForm" onSubmit={this.onSubmit}>
         {fields.map((f) =>
           getFieldDecorator(f.name, {
-            // initialValue: f.initialValue,
+            initialValue: f.initialValue,
             rules: [
               {
                 required: true,
