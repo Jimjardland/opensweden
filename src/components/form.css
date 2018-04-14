@@ -9,16 +9,11 @@
 }
 
 .bookForm {
-  margin: 50px;
+  background: #38ada9;
   color: white;
   padding: 30px;
   min-width: 350px;
-  background: linear-gradient(
-    to bottom left,
-    rgb(174, 238, 105),
-    rgb(73, 159, 37)
-  );
-  border-radius: 10px;
+  border-radius: 7px;
 }
 
 .inputFields {
@@ -79,7 +74,7 @@ input:focus {
 
 ::placeholder {
   color: white;
-  font-size: 10px;
+  font-size: 12px;
   opacity: 0.8;
 }
 

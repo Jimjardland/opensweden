@@ -19,8 +19,10 @@ class PlaceStore {
   @persist
   confirmId: ?string
 
+  @observable selectedPlace: ?Object
+
   get places(): Array<Event> {
-    return this._places.slice()
+    return this._places ? this._places.slice() : []
   }
 
   @action
@@ -34,8 +36,9 @@ class PlaceStore {
       message.error('Kan inte skapa rum')
       console.warn(e)
       throw e
+    } finally {
+      runInAction(() => (this.isBusy = false))
     }
-    runInAction(() => (this.isBusy = false))
   }
 
   @action
@@ -64,11 +67,16 @@ class PlaceStore {
       runInAction(() => (this.fetchingInitPlaces = true))
     }
 
-    const places = await MainApi.get('/get-available-places')
+    const places = await MainApi.get('/get-available-places/mock')
     runInAction(() => {
       this._places = places
       this.fetchingInitPlaces = false
     })
+  }
+
+  @action
+  selectPlace = (selected: ?Object | void) => {
+    this.selectedPlace = selected
   }
 }
 

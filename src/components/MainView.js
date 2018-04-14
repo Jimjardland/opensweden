@@ -16,7 +16,8 @@ export default class MainView extends React.Component<Props> {
     return <Numbers />
     return (
       <Container>
-        <TipsContainer />
+        {false && <TipsContainer />}
+        <SelectedPlace />
         <MapContainer>
           <BottomArea />
         </MapContainer>

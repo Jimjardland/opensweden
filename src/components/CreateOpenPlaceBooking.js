@@ -2,7 +2,7 @@
 import * as React from 'react'
 import styled from 'styled-components'
 import { observer } from 'mobx-react'
-import { Form, Button, Spin, Icon } from 'antd'
+import { Form, Button } from 'antd'
 import FormField from './FormField'
 import PlaceStore from '../stores/PlaceStore'
 import ProgressStore from '../stores/ProgressStore'
@@ -28,6 +28,7 @@ class CreateOpenPlaceBooking extends React.Component<Props> {
 
   render() {
     const { getFieldDecorator } = this.props.form
+    const { onCancel } = this.props
 
     if (PlaceStore.isBusy) return <Loader />
 
@@ -48,7 +49,7 @@ class CreateOpenPlaceBooking extends React.Component<Props> {
         initialValue: '11457'
       },
       {
-        label: 'Stad',
+        label: 'Ort',
         name: 'city',
         initialValue: 'Stockholm'
       }
@@ -57,17 +58,22 @@ class CreateOpenPlaceBooking extends React.Component<Props> {
       <Form className="bookForm" onSubmit={this.onSubmit}>
         {fields.map((f) =>
           getFieldDecorator(f.name, {
-            initialValue: f.initialValue,
+            // initialValue: f.initialValue,
             rules: [
               {
                 required: true,
                 message: 'Fält är obligatoriskt'
               }
             ]
-          })(<FormField />)
+          })(<FormField placeholder={f.label} />)
         )}
 
-        <Button htmlType="submit">Skicka</Button>
+        <Button style={{ marginRight: 8 }} onClick={onCancel}>
+          Ångra
+        </Button>
+        <Button type="primary" htmlType="submit">
+          Skicka
+        </Button>
       </Form>
     )
   }

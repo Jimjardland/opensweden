@@ -7,3 +7,61 @@ body {
 .mapboxgl-missing-css {
   display: none;
 }
+
+.event-circle {
+  cursor: auto !important;
+}
+
+.event-circle:after {
+  display: block;
+  content: '';
+  width: 100px !important;
+  height: 100px !important;
+  border-radius: 50%;
+  background: #de310b;
+  opacity: 0.65;
+  animation: event-glow 1s infinite linear;
+  left: 50%;
+  top: 50%;
+  position: absolute;
+  transform: translate(-50%);
+}
+
+@keyframes event-glow {
+  0% {
+    filter: blur(10px);
+    width: 100px !important;
+    height: 100px !important;
+  }
+
+  50% {
+    filter: blur(15px);
+    width: 150px !important;
+    height: 150px !important;
+  }
+
+  100% {
+    filter: blur(10px);
+    width: 100px !important;
+    height: 100px !important;
+  }
+}
+
+.place-circle {
+  width: 28px !important;
+  height: 28px !important;
+  border-radius: 50%;
+  background: url('./resources/home.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  cursor: auto !important;
+}
+
+.person-circle {
+  width: 34px !important;
+  height: 34px !important;
+  border-radius: 50%;
+  background: url('./resources/location.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+}
