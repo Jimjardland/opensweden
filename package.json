@@ -37,7 +37,7 @@
     "react-dom": "^16.3.1",
     "react-hot-loader": "^4.0.1",
     "react-scripts": "1.1.4",
-    "restify": "^7.1.1",
+    "restify": "6.3.4",
     "simple-pg": "^1.0.0",
     "smspro": "^1.1.0",
     "snakecase-keys": "^1.1.1",

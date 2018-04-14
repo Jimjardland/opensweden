@@ -1,6 +1,6 @@
 // @flow
 
-const root = 'http://localhost:1339'
+const root = '/api'
 
 const headers = {
   Accept: 'application/json',
