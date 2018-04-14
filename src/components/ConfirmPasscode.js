@@ -9,6 +9,7 @@ import Loader from './Loader'
 const Wrapper = styled.div`
   display: flex;
   flex-direction: row;
+  margin-bottom: 20px;
 `
 
 type Props = {
@@ -71,7 +72,7 @@ class ConfirmPasscode extends React.Component<Props, State> {
   onSubmit = (e) => {
     e.preventDefault()
     const code = parseInt(this.state.numbers.join(''))
-    console.log({ code })
+
     PlaceStore.confirmRoom(code)
       .then(() => {
         console.log('created')
@@ -82,16 +83,13 @@ class ConfirmPasscode extends React.Component<Props, State> {
   }
 
   inner() {
-    if (PlaceStore.isBusy) {
-      return <Loader />
-    }
-
     const ints = Array.from(new Array(6)).map((_, i) => i)
     const { numbers } = this.state
     const canSubmit = numbers.filter((n) => !isNaN(n)).length === ints.length
 
     return (
-      <form onSubmit={this.onSubmit} className="theCode">
+      <form onSubmit={this.onSubmit} className="wrapper">
+        <h2>Fyll i din kod</h2>
         <Wrapper>
           {ints.map((n, index) => (
             <input
@@ -104,7 +102,12 @@ class ConfirmPasscode extends React.Component<Props, State> {
             />
           ))}
         </Wrapper>
-        <Button type="primary" disabled={!canSubmit} htmlType="submit">
+        <Button
+          type="primary"
+          loading={PlaceStore.isBusy}
+          disabled={!canSubmit}
+          htmlType="submit"
+        >
           Skicka
         </Button>
       </form>
@@ -112,12 +115,7 @@ class ConfirmPasscode extends React.Component<Props, State> {
   }
 
   render() {
-    return (
-      <div>
-        <h2>Fyll i din kod</h2>
-        {this.inner()}
-      </div>
-    )
+    return <div>{this.inner()}</div>
   }
 }
 

@@ -8,6 +8,7 @@ import PlaceStore from '../stores/PlaceStore'
 import ProgressStore from '../stores/ProgressStore'
 import Loader from './Loader'
 import './form.css'
+import classNames from 'classnames'
 
 type Props = {
   form: Object,
@@ -30,23 +31,21 @@ class CreateOpenPlaceBooking extends React.Component<Props> {
     const { getFieldDecorator } = this.props.form
     const { onCancel } = this.props
 
-    if (PlaceStore.isBusy) return <Loader />
-
     const fields = [
       {
         label: 'Telefonnummer',
         name: 'phoneNumber',
-        initialValue: '0703679949'
+        initialValue: '0734119576'
       },
       {
         label: 'Adress',
         name: 'address',
-        initialValue: 'Riddargatan 26'
+        initialValue: 'Kungsgatan 44'
       },
       {
         label: 'Zip',
         name: 'zip',
-        initialValue: '11457'
+        initialValue: '11137'
       },
       {
         label: 'Ort',
@@ -55,7 +54,8 @@ class CreateOpenPlaceBooking extends React.Component<Props> {
       }
     ]
     return (
-      <Form className="bookForm" onSubmit={this.onSubmit}>
+      <Form className={classNames('wrapper')} onSubmit={this.onSubmit}>
+        <h2>Dina uppgifter</h2>
         {fields.map((f) =>
           getFieldDecorator(f.name, {
             initialValue: f.initialValue,
@@ -71,7 +71,7 @@ class CreateOpenPlaceBooking extends React.Component<Props> {
         <Button style={{ marginRight: 8 }} onClick={onCancel}>
           Ångra
         </Button>
-        <Button type="primary" htmlType="submit">
+        <Button type="primary" loading={PlaceStore.isBusy} htmlType="submit">
           Skicka
         </Button>
       </Form>

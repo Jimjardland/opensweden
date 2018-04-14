@@ -82,10 +82,11 @@ body {
 
 h2 {
   font-family: 'GillSans';
+  color: white;
 }
 
 .codeInput {
-  background-color: #58555b;
+  /* background-color: #58555b; */
   color: white;
   font-size: 20px;
   margin: 0px 4px;
@@ -93,6 +94,7 @@ h2 {
   text-align: center;
   width: 45px;
   height: 55px;
+  border: 1px solid #ffffff52;
 }
 
 .sendButton {

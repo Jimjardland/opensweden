@@ -2,7 +2,6 @@
 
 import { observable, action } from 'mobx'
 import { persist } from 'mobx-persist'
-import MainApi from '../utils/MainApi'
 
 class ProgressStore {
   @observable

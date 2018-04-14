@@ -9,15 +9,13 @@ import ProgressStore from './ProgressStore'
 type Event = {}
 
 class PlaceStore {
-  @observable
-  @persist('list')
-  _places: Array<Event> = []
+  @observable _places: Array<Event> = []
   @observable fetchingInitPlaces: boolean = false
   @observable isBusy: boolean = false
 
   @observable
   @persist
-  confirmId: ?string
+  confirmId: ?string = ''
 
   @observable selectedPlace: ?Object
 

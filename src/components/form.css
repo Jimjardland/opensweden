@@ -1,15 +1,5 @@
-.headerText {
-  color: white;
-  text-transform: uppercase;
-  font-size: 20px;
-  font-weight: bold;
-  text-align: center;
-  padding-top: 25px;
-  font-family: Poppins-Regular, sans-serif;
-}
-
-.bookForm {
-  background: #38ada9;
+.wrapper {
+  background: #223535;
   color: white;
   padding: 30px;
   min-width: 350px;
