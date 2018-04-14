@@ -109,7 +109,7 @@ export default class BottomArea extends React.Component<Props, State> {
     const { faded, open } = this.state
     return (
       <Container
-        onClick={!open && this.setOpen}
+        onClick={!open ? this.setOpen : () => {}}
         open={open}
         ref={(ref) => (this.container = findDOMNode(ref))}
       >

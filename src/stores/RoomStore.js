@@ -6,7 +6,7 @@ import MainApi from '../utils/MainApi'
 type Event = {}
 
 class RoomStore {
-  @observable _events: Array<Event> = []
+  @observable _places: Array<Event> = []
   @observable fetchingInitEvents: boolean = false
   @observable isCreating: boolean = false
 
@@ -17,8 +17,9 @@ class RoomStore {
     // runInAction(() => (this.fetchingInitEvents = true))
 
     const res = await MainApi.post('/add-place', data)
+    this._places.push(res)
 
-    runInAction(() => (this.isCreating = true))
+    runInAction(() => (this.isCreating = false))
   }
 }
 
