@@ -87,7 +87,7 @@ input:focus {
   outline: none;
 }
 
-.sendButton {
+.fsendButton {
   color: black;
   text-transform: uppercase;
   font-size: 10px;
@@ -99,7 +99,7 @@ input:focus {
   transition: all 0.5s ease 0s;
 }
 
-button:hover {
+hbutton:hover {
   color: white;
   background: linear-gradient(
     to bottom left,
