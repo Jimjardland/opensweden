@@ -4,6 +4,16 @@ body {
   font-family: 'Lato', sans-serif;
 }
 
+@font-face {
+  font-family: 'GillSans';
+  src: url('./fonts/GillSans-Bold.woff2') format('woff2'),
+    url('./fonts/GillSans-Bold.woff') format('woff'),
+    url('./fonts/GillSans-Bold.ttf') format('truetype'),
+    url('./fonts/GillSans-Bold.svg#GillSans-Bold') format('svg');
+  font-weight: 100;
+  font-style: normal;
+}
+
 .mapboxgl-missing-css {
   display: none;
 }
@@ -54,7 +64,6 @@ body {
   background: url('./resources/home.png');
   background-size: cover;
   background-repeat: no-repeat;
-  cursor: auto !important;
 }
 
 .person-circle {
@@ -64,4 +73,9 @@ body {
   background: url('./resources/location.png');
   background-size: cover;
   background-repeat: no-repeat;
+  cursor: auto !important;
+}
+
+.leaflet-container {
+  background: #191a1a !important;
 }

@@ -17,10 +17,14 @@ class MainApi {
       headers,
       body: JSON.stringify(data)
     }).then((res) => {
-      if (res.status < 200 || res.status > 300) {
-        throw res.statusText
-      }
-      return res.json()
+      const err = res.status < 200 || res.status > 300
+
+      return res.json().then((res) => {
+        if (err) {
+          throw res
+        }
+        return err
+      })
     })
   }
 }

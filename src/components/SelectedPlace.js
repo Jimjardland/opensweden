@@ -2,31 +2,48 @@
 
 import * as React from 'react'
 import { observer } from 'mobx-react'
-import CreateOpenPlaceBooking from './CreateOpenPlaceBooking'
+import styled from 'styled-components'
 import PlaceStore from '../stores/PlaceStore'
-import ConfirmPasscode from './ConfirmPasscode'
 import { Modal, Button } from 'antd'
 
-type Props = {}
+type Props = {
+  selected: ?Object
+}
+
+type State = {
+  visible: boolean
+}
+
+const Row = styled.div``
 
 @observer
-export default class SelectedPlace extends React.Component<Props> {
-  handleOk = (e) => {}
+export default class SelectedPlace extends React.PureComponent<Props, State> {
+  state = { visible: false }
 
-  handleCancel = (e) => {
-    PlaceStore.selectPlace()
+  componentWillReceiveProps(nextProps: Props) {
+    this.setState({
+      visible: Boolean(nextProps.selected)
+    })
+  }
+
+  handleCancel = () => {
+    this.setState({
+      visible: false
+    })
+
+    setTimeout(() => {
+      PlaceStore.selectPlace()
+    }, 500)
   }
 
   render() {
-    const { selectedPlace } = PlaceStore
-    const visible = Boolean(selectedPlace)
-    const place = selectedPlace || {}
+    const place = this.props.selected || {}
+    const { visible } = this.state
 
     return (
       <Modal
         title={place.address}
         visible={visible}
-        onOk={this.handleOk}
         onCancel={this.handleCancel}
         footer={[
           <Button key="back" onClick={this.handleCancel}>
@@ -37,23 +54,36 @@ export default class SelectedPlace extends React.Component<Props> {
             type="primary"
             style={{ marginLeft: 8 }}
             href={`tel:${place.phone_number}`}
-            onClick={this.handleOk}
           >
             Ring
           </Button>
         ]}
       >
-        <b>Adress:</b>
-        <div>
-          <div>{place.address}</div>
+        <Row>
+          <b>Adress</b>
           <div>
-            {place.city} {place.zip}
+            <div>{place.address}</div>
+            <div>
+              {place.city} {place.zip}
+            </div>
           </div>
-        </div>
-        <b>Telefonnummer</b>
-        <div>
-          <div>{place.phone_number}</div>
-        </div>
+        </Row>
+
+        <Row>
+          <b>Telefonnummer</b>
+          <div>
+            <div>{place.phone_number}</div>
+          </div>
+        </Row>
+
+        {place.extra && (
+          <Row>
+            <b>Meddelande</b>
+            <div>
+              <div>{place.extra}</div>
+            </div>
+          </Row>
+        )}
       </Modal>
     )
   }
