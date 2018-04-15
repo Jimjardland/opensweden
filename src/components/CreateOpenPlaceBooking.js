@@ -42,7 +42,7 @@ class CreateOpenPlaceBooking extends React.Component<Props> {
       {
         label: 'Telefonnummer',
         name: 'phoneNumber',
-        initialValue: '0734119576',
+        initialValue: '0703679949',
         inputType: 'tel',
         rules: [
           {
@@ -54,7 +54,7 @@ class CreateOpenPlaceBooking extends React.Component<Props> {
       {
         label: 'Adress',
         name: 'address',
-        initialValue: 'Kungsgatan 44',
+        initialValue: 'Rådmansgatan 29',
         inputType: '',
         rules: [
           {
@@ -66,7 +66,7 @@ class CreateOpenPlaceBooking extends React.Component<Props> {
       {
         label: 'Postkod',
         name: 'zip',
-        initialValue: '11137',
+        initialValue: '11357',
         inputType: 'tel',
         rules: [
           {
@@ -98,6 +98,7 @@ class CreateOpenPlaceBooking extends React.Component<Props> {
         {fields.map((f, i) =>
           getFieldDecorator(f.name, {
             validateTrigger: 'onBlur',
+            initialValue: f.initialValue,
             rules: [
               ...f.rules,
               {
