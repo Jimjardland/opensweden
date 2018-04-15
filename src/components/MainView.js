@@ -20,7 +20,7 @@ type Props = {}
 export default class MainView extends React.Component<Props> {
   render() {
     const { events } = EventsStore
-    console.log(events)
+
     return (
       <Container>
         {events.map((e, i) => (
