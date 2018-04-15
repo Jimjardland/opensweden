@@ -5,7 +5,7 @@ import { Button, Modal } from 'antd'
 
 const Area = styled.div`
   position: fixed;
-  top: 20px;
+  top: 60px;
   right: 20px;
   z-index: 20;
   display: flex;
