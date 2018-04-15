@@ -11,13 +11,17 @@ type Props = {}
 @observer
 export default class App extends React.Component<Props> {
   componentDidMount() {
-    EventsStore.fetchEvents(true)
-    PlaceStore.fetchPlaces(true)
+    Promise.all([
+      (EventsStore.fetchEvents(true), PlaceStore.fetchPlaces(true))
+    ]).then(() => {
+      const elem = document.getElementById('loading-screen')
+      elem.classList.add('completed')
+      setTimeout(() => {
+        elem.remove()
+      }, 300)
+    })
   }
   render() {
-    if (EventsStore.fetchingInitEvents || PlaceStore.fetchingInitPlaces)
-      return 'Loading...'
-
     return <MainView />
   }
 }

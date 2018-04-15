@@ -79,6 +79,21 @@ body {
   background: #191a1a !important;
 }
 
+h1 {
+  font-family: 'GillSans';
+  color: white;
+  width: 100%;
+  text-align: center;
+  margin-top: 40px;
+  font-size: 42px;
+}
+
+@media only screen and (max-width: 800px) {
+  h1 {
+    font-size: 60px;
+  }
+}
+
 h2 {
   font-family: 'GillSans';
   color: white;
@@ -179,4 +194,12 @@ input::-webkit-inner-spin-button {
 
 .ant-btn-clicked:after {
   display: none;
+}
+
+#loading-screen {
+  transition: opacity 0.3s ease;
+}
+
+#loading-screen.completed {
+  opacity: 0;
 }
