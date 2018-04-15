@@ -103,7 +103,7 @@ class ConfirmPasscode extends React.Component<Props, State> {
             <input
               key={index}
               ref={index}
-              type="number"
+              type="tel"
               autoFocus={index === 0}
               className="codeInput"
               value={numbers[index] !== undefined ? numbers[index] : ''}

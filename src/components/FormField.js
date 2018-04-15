@@ -7,7 +7,8 @@ type Props = {
   placeholder?: string,
   value?: string,
   type: string,
-  inputType: string
+  inputType: string,
+  pattern?: string
 }
 
 const FormField = ({

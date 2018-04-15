@@ -43,7 +43,7 @@ class CreateOpenPlaceBooking extends React.Component<Props> {
         label: 'Telefonnummer',
         name: 'phoneNumber',
         initialValue: '0734119576',
-        inputType: 'number',
+        inputType: 'tel',
         rules: [
           {
             len: 10,
@@ -67,7 +67,7 @@ class CreateOpenPlaceBooking extends React.Component<Props> {
         label: 'Postkod',
         name: 'zip',
         initialValue: '11137',
-        inputType: 'number',
+        inputType: 'tel',
         rules: [
           {
             len: 5,
