@@ -2,7 +2,7 @@
 
 import { observable, action, runInAction } from 'mobx'
 import { persist } from 'mobx-persist'
-import { message } from 'antd'
+import { message, notification } from 'antd'
 import MainApi from '../utils/MainApi'
 import ProgressStore from './ProgressStore'
 
@@ -28,8 +28,12 @@ class PlaceStore {
     runInAction(() => (this.isBusy = true))
 
     try {
-      const { id } = await MainApi.post('/add-place', data)
+      const { id, code } = await MainApi.post('/add-place', data)
       runInAction(() => (this.confirmId = id))
+      notification.success({
+        message: `Sms funktionaliteten är avstängd. Koden som du ska fylla i är ${code}`,
+        duration: 0
+      })
     } catch (e) {
       message.error(
         e.message || 'Kan inte skapa rum. Kontrollera att adressen är korrekt.'

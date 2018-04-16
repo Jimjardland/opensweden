@@ -72,27 +72,25 @@ export default class Map extends React.PureComponent<Props, State> {
   }
 
   setUser = (userPostion?: Array<number>) => {
-    let isFirst = false
-    if (this.userPos) {
-      this.map.removeLayer(this.userPos)
-    } else {
-      isFirst = true
-    }
-
-    if (userPostion) {
-      const [lat, lng] = userPostion
-      if (lat && lng) {
-        const myIcon = Leaflet.divIcon({
-          className: 'person-circle'
-        })
-        this.userPos = Leaflet.marker([lat, lng], { icon: myIcon })
-        this.userPos.addTo(this.map)
-
-        if (isFirst) {
-          this.map.setView([lat, lng])
-        }
-      }
-    }
+    // let isFirst = false
+    // if (this.userPos) {
+    //   this.map.removeLayer(this.userPos)
+    // } else {
+    //   isFirst = true
+    // }
+    // if (userPostion) {
+    //   const [lat, lng] = userPostion
+    //   if (lat && lng) {
+    //     const myIcon = Leaflet.divIcon({
+    //       className: 'person-circle'
+    //     })
+    //     this.userPos = Leaflet.marker([lat, lng], { icon: myIcon })
+    //     this.userPos.addTo(this.map)
+    //     if (isFirst) {
+    //       this.map.setView([lat, lng])
+    //     }
+    //   }
+    // }
   }
 
   componentDidUpdate() {

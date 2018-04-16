@@ -98,7 +98,7 @@ class CreateOpenPlaceBooking extends React.Component<Props> {
         {fields.map((f, i) =>
           getFieldDecorator(f.name, {
             validateTrigger: 'onBlur',
-            initialValue: f.initialValue,
+            // initialValue: f.initialValue,
             rules: [
               ...f.rules,
               {
