@@ -1,6 +1,9 @@
 # OpenSweden
 This is our contribution to Hack for Sweden 2018
 
+### Click on the picture to see a video about this repository:
+[![Video of the project](https://i.vimeocdn.com/video/694697108.webp?mw=1920&mh=1080&q=70)](https://vimeo.com/264826531)
+
 ## Setup
 Make sure docker is running on your machine.
 
@@ -32,7 +35,7 @@ Since shelters are only accessible during war we need another way to keep everyo
 We built a Node.JS API with a PostgresDB to save open houses.
 Frontend is built with React and everything is dockerized (Docker).
 Deployed to a Digital Ocean server.
-Orchestration with Docker Cloud
+Orchestration with Docker Cloud.
 SmsPro by Telenor to send text messages.
 We utilized Polisens API to get current events
 
