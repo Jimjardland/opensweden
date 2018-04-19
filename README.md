@@ -66,10 +66,8 @@ Nocco keeps you awake.
 
 ## Contributors
 
-This was our team during Hack for Sweden
-
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore -->
-<img src="https://avatars0.githubusercontent.com/u/8521353?v=4" width="100px;"/><br /><sub><b>Jimmy Jardland</b></sub> | <img src="https://avatars3.githubusercontent.com/u/34298599?s=460&v=4" width="100px;"/><br /><sub><b>Jenny Lindgren</b></sub> | <img src="https://avatars2.githubusercontent.com/u/7723195?s=460&v=4" width="100px;"/><br /><sub><b>Jonathan Gustafsson</b></sub> |
+[<img src="https://avatars0.githubusercontent.com/u/8521353?v=4" width="100px;"/><br /><sub><b>Jimmy Jardland</b></sub>](https://github.com/Jimjardland) | [<img src="https://avatars3.githubusercontent.com/u/34298599?s=460&v=4" width="100px;"/><br /><sub><b>Jenny Lindgren](https://github.com/jennyliindgren)</b></sub> | [<img src="https://avatars2.githubusercontent.com/u/7723195?s=460&v=4" width="100px;"/><br /><sub><b>Jonathan Gustafsson</b></sub>](https://github.com/jonathangus) |
 | :---: | :---: | :---: |
 <!-- ALL-CONTRIBUTORS-LIST:END -->
